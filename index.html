@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sisekelo Mhlamvu | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+
+  <!-- Hero Section -->
+  <section class="h-screen bg-gradient-to-br from-gray-100 via-white to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 flex flex-col justify-center items-center px-4 relative overflow-hidden">
+
+    <!-- Light/Dark Mode Toggle -->
+    <button onclick="toggleTheme()" class="absolute top-5 right-5 bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded shadow hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+      Toggle Theme
+    </button>
+
+    <!-- Profile Image -->
+    <img src="assets/images/seko2.jpeg" alt="Sisekelo Mhlamvu" class="w-48 h-48 rounded-full shadow-lg mb-6 border-4 border-white" />
+
+    <!-- Name and Title -->
+    <h1 class="text-4xl md:text-6xl font-bold mb-2">Sisekelo Mhlamvu</h1>
+    <p class="text-xl md:text-2xl font-medium mb-4">Web Developer | Designer | Code Enthusiast</p>
+
+    <!-- Typewriter Tagline -->
+    <div class="text-lg md:text-xl typewriter">
+      <span id="typewriter-text" class="text-blue-700 dark:text-blue-400"></span>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="flex space-x-8 mb-8 mt-6">
+      <!-- GitHub -->
+      <a href="https://github.com/Siseko23" target="_blank" class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition" aria-label="GitHub">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.9 1.2 2 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0012 .3z" />
+        </svg>
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/sisekelo-mhlamvu-2576a1315" target="_blank" class="text-blue-600 hover:text-blue-800 dark:hover:text-blue-300 transition" aria-label="LinkedIn">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.45 20.45h-3.55v-5.25c0-1.25-.02-2.85-1.75-2.85-1.75 0-2.02 1.37-2.02 2.75v5.35h-3.55V9h3.41v1.56h.05c.47-.89 1.62-1.82 3.34-1.82 3.57 0 4.22 2.35 4.22 5.4v6.3zM5.34 7.43c-1.15 0-2.08-.94-2.08-2.1 0-1.16.94-2.1 2.08-2.1 1.16 0 2.1.94 2.1 2.1 0 1.16-.94 2.1-2.1 2.1zM7.13 20.45H3.55V9h3.58v11.45zM22.22 0H1.77C.8 0 0 .8 0 1.77v20.45C0 23.2.8 24 1.77 24h20.45c.97 0 1.78-.8 1.78-1.78V1.77C24 .8 23.2 0 22.22 0z"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Scroll Down Button -->
+    <a href="#about" class="mt-10 text-blue-500 hover:text-blue-700 dark:hover:text-blue-300 text-sm">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-bounce mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+      Scroll Down
+    </a>
+
+  </section>
+
+  <!-- Typewriter Script -->
+  <script>
+    const texts = [
+      'Crafting code into experiences.',
+      'Turning ideas into websites.',
+      'Building modern digital portfolios.'
+    ];
+
+    let count = 0;
+    let index = 0;
+    let currentText = '';
+    let letter = '';
+
+    (function type() {
+      if (count === texts.length) {
+        count = 0;
+      }
+      currentText = texts[count];
+      letter = currentText.slice(0, ++index);
+      document.getElementById('typewriter-text').textContent = letter;
+
+      if (letter.length === currentText.length) {
+        count++;
+        index = 0;
+        setTimeout(type, 1500); // pause between phrases
+      } else {
+        setTimeout(type, 100); // typing speed
+      }
+    })();
+  </script>
+
+  <!-- Theme Toggle Script -->
+  <script>
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    // On page load
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+
+   <!-- About Section -->
+  <section id="about" class="py-20 px-6 bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      
+      <!-- Image + Button -->
+      <div class="flex flex-col items-center">
+        <img src="assets/images/seko1.jpeg" alt="About Sisekelo" 
+             class="w-64 h-64 object-cover rounded-2xl shadow-lg border-4 border-blue-100 dark:border-blue-700" />
+        
+        <!-- Download CV Button -->
+        <a href="files/Sisekelo_Vuyolwethu_Mhlamvu_CV (AutoRecovered).pdf" download
+           class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition">
+            View Resume
+        </a>
+      </div>
+
+      <!-- Text Content -->
+      <div>
+        <h2 class="text-3xl font-bold mb-4 text-blue-600 dark:text-blue-400">About Me</h2>
+        <p class="text-lg leading-relaxed mb-4">
+          Hello! I'm <strong>Sisekelo Mhlamvu</strong>, a passionate web developer based in South Africa. I specialize in building modern, responsive websites using clean and efficient code.
+        </p>
+        <p class="text-lg leading-relaxed mb-4">
+          With a background in design and development, I bring creative ideas to life through HTML, CSS, JavaScript, and modern frameworks. Whether it's crafting beautiful UI or writing powerful backend logic, I enjoy every step of the process.
+        </p>
+        <p class="text-lg leading-relaxed">
+          I'm always learning, experimenting, and collaborating to build better digital experiences. Let’s build something great together!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 px-6 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-10 text-blue-600 dark:text-blue-400">Professional Skills</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left">
+        
+        <!-- Skill Item -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="flex items-center space-x-4 mb-4">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 17v-6h13V7H2v4h4v6h3z"/>
+            </svg>
+            <h3 class="text-xl font-semibold">Teamwork</h3>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Collaborates effectively in group projects and communicates clearly with team members.</p>
+        </div>
+
+        <!-- Skill Item -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="flex items-center space-x-4 mb-4">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4M7 8h14a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V10a2 2 0 012-2z" />
+            </svg>
+            <h3 class="text-xl font-semibold">Problem Solving</h3>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Able to analyze complex problems and find efficient solutions quickly.</p>
+        </div>
+
+        <!-- Skill Item -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="flex items-center space-x-4 mb-4">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
+            </svg>
+            <h3 class="text-xl font-semibold">Time Management</h3>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Manages deadlines efficiently and delivers work on time with consistency.</p>
+        </div>
+
+        <!-- Skill Item -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="flex items-center space-x-4 mb-4">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M5 13l4 4L19 7" />
+            </svg>
+            <h3 class="text-xl font-semibold">Attention to Detail</h3>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Ensures that every part of a project meets quality standards and is error-free.</p>
+        </div>
+
+        <!-- Skill Item -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="flex items-center space-x-4 mb-4">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 6v6l4 2" />
+            </svg>
+            <h3 class="text-xl font-semibold">Adaptability</h3>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Quickly adjusts to changes in tools, teams, and technologies.</p>
+        </div>
+
+        <!-- Skill Item -->
+        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <div class="flex items-center space-x-4 mb-4">
+            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M3 12l2-2 4 4 8-8 4 4" />
+            </svg>
+            <h3 class="text-xl font-semibold">Creativity</h3>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">Brings fresh ideas and innovation to each project to make it stand out.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section id="skills" style="padding: 80px 24px; background-color: white; color: #2d3748;">
+  <div style="max-width: 960px; margin: 0 auto;">
+    <h2 style="font-size: 28px; font-weight: 600; margin-bottom: 48px; text-align: center; color: #1a202c;">Code Based Skills</h2>
+
+    <div style="display: grid; grid-template-columns: 1fr; gap: 64px; max-width: 100%;">
+      <!-- For medium and up, use media query -->
+      <style>
+        @media (min-width: 768px) {
+          #skills .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+          }
+        }
+      </style>
+
+      <div class="skills-grid">
+        <!-- Frontend Skills -->
+        <div>
+          <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 32px; color: #2563eb;">Frontend Skills</h3>
+
+          <div style="margin-bottom: 32px;">
+            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+              <span>HTML5</span><span>90%</span>
+            </div>
+            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
+              <div style="height: 12px; width: 90%; background: #2563eb; border-radius: 6px;"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 32px;">
+            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+              <span>CSS3</span><span>85%</span>
+            </div>
+            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
+              <div style="height: 12px; width: 85%; background: #2563eb; border-radius: 6px;"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 32px;">
+            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+              <span>JavaScript</span><span>80%</span>
+            </div>
+            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
+              <div style="height: 12px; width: 80%; background: #facc15; border-radius: 6px;"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 32px;">
+            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+              <span>React</span><span>75%</span>
+            </div>
+            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
+              <div style="height: 12px; width: 75%; background: #06b6d4; border-radius: 6px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend Skills -->
+        <div>
+          <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 32px; color: #16a34a;">Backend Skills</h3>
+
+          <div style="margin-bottom: 32px;">
+            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+              <span>Python</span><span>75%</span>
+            </div>
+            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
+              <div style="height: 12px; width: 75%; background: #16a34a; border-radius: 6px;"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 32px;">
+            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+              <span>C#</span><span>70%</span>
+            </div>
+            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
+              <div style="height: 12px; width: 70%; background: #6366f1; border-radius: 6px;"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 32px;">
+            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+              <span>Java</span><span>70%</span>
+            </div>
+            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
+              <div style="height: 12px; width: 70%; background: #84cc16; border-radius: 6px;"></div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 32px;">
+            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
+              <span>SQL</span><span>95%</span>
+            </div>
+            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
+              <div style="height: 12px; width: 95%; background: #f59e0b; border-radius: 6px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="certificates" style="padding: 80px 24px; background-color: #f9fafb; color: #1a202c;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 style="font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 48px; color: #2563eb;">My Certificates</h2>
+
+    <div style="display: grid; grid-template-columns: 1fr; gap: 32px;">
+      <style>
+        @media (min-width: 768px) {
+          #certificates .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          #certificates .cert-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+      </style>
+
+      <div class="cert-grid">
+        <!-- Certificate Items -->
+        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Introduction to Cybersecurity</h3>
+            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Cisco</p>
+          </div>
+          <a href="files/Introduction_to_Cybersecurity_Badge20250109-26-kh26ki (2).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">AI Fundamentals</h3>
+            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
+          </div>
+          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (5) (1).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Generativ AI</h3>
+            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
+          </div>
+          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (4) (1).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Search Technology</h3>
+            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
+          </div>
+          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (3) (1).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Microsoft Copilot</h3>
+            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
+          </div>
+          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (2) (1).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Resposible AI</h3>
+            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
+          </div>
+          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (1) (1).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">AI and Accessibility</h3>
+            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
+          </div>
+          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (6).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
+        </div>
+
+        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</h3>
+            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
+          </div>
+          <a href="files/ecertificate.pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
+        </div>
+          <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Fnb App Academy 2025</h3>
+            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
+          </div>
+          <a href="files/Sisekelo-2-6882BA74B71C1-2025-07-25-00-57-56.pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 px-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-10">
+    <h2 class="text-4xl font-bold text-center text-blue-600 dark:text-blue-400 mb-10">Contact Me</h2>
+
+    <form id="contact-form" class="space-y-6">
+      <div>
+        <label for="name" class="block mb-2 font-semibold">Name</label>
+        <input id="name" name="name" type="text" required placeholder="Your full name"
+          class="w-full px-4 py-3 rounded-md border border-gray-300" />
+      </div>
+
+      <div>
+        <label for="email" class="block mb-2 font-semibold">Email</label>
+        <input id="email" name="email" type="email" required placeholder="your.email@example.com"
+          class="w-full px-4 py-3 rounded-md border border-gray-300" />
+      </div>
+
+      <div>
+        <label for="message" class="block mb-2 font-semibold">Message</label>
+        <textarea id="message" name="message" required placeholder="Write your message here..."
+          class="w-full px-4 py-3 rounded-md border border-gray-300 resize-y min-h-[120px]"></textarea>
+      </div>
+
+      <button type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition-colors duration-300">
+        Send Message
+      </button>
+    </form>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "xkZ4rlI6UCwn4hmN7" // Replace with your actual public key
+        });
+      })();
+
+      document.getElementById('contact-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        emailjs.sendForm('service_c5onzro', 'template_cbk62ha', this)
+          .then(function () {
+            alert('Message sent successfully!');
+            document.getElementById('contact-form').reset();
+          }, function (error) {
+            alert('Failed to send message, please try again.');
+            console.error('EmailJS error:', error);
+          });
+      });
+    </script>
+  </div>
+</section>
+
+
+
+    <div class="mt-12 text-center space-y-4 text-gray-700 dark:text-gray-300">
+      <p><strong>Phone:</strong> <a href="tel:065 856 4192" class="text-blue-600 hover:underline">+27 62 547 2470</a></p>
+      <p><strong>Email:</strong> <a href="mailto:svmhlamvu@gmail.com" class="text-blue-600 hover:underline">sisekelo@example.com</a></p>
+
+      <div class="mt-6 flex justify-center space-x-8 text-2xl text-blue-600 dark:text-blue-400">
+        <a href="https://github.com/Siseko23" target="_blank" aria-label="GitHub" title="GitHub" class="hover:text-blue-800">
+          <!-- GitHub SVG Icon -->
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.9 1.2 2 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0012 .3z" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/sisekelo-mhlamvu-2576a1315" target="_blank" aria-label="LinkedIn" title="LinkedIn" class="hover:text-blue-800">
+          <!-- LinkedIn SVG Icon -->
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M20.45 20.45h-3.55v-5.25c0-1.25-.02-2.85-1.75-2.85-1.75 0-2.02 1.37-2.02 2.75v5.35h-3.55V9h3.41v1.56h.05c.47-.89 1.62-1.82 3.34-1.82 3.57 0 4.22 2.35 4.22 5.4v6.3zM5.34 7.43c-1.15 0-2.08-.94-2.08-2.1 0-1.16.94-2.1 2.08-2.1 1.16 0 2.1.94 2.1 2.1 0 1.16-.94 2.1-2.1 2.1zM7.13 20.45H3.55V9h3.58v11.45zM22.22 0H1.77C.8 0 0 .8 0 1.77v20.45C0 23.2.8 24 1.77 24h20.45c.97 0 1.78-.8 1.78-1.78V1.77C24 .8 23.2 0 22.22 0z" />
+          </svg>
+        </a>
+        <a href="https://instagram.com/sisekelo" target="_blank" aria-label="Instagram" title="Instagram" class="hover:text-blue-800">
+          <!-- Instagram SVG Icon -->
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5a4.25 4.25 0 00-4.25 4.25v8.5a4.25 4.25 0 004.25 4.25h8.5a4.25 4.25 0 004.25-4.25v-8.5a4.25 4.25 0 00-4.25-4.25h-8.5zm8.5 3a1 1 0 110 2 1 1 0 010-2zm-4.25 1.25a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.5a3 3 0 100 6 3 3 0 000-6z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
+
