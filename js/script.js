@@ -23,35 +23,125 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     }
 })();
 
+// ---------- Bob, the blanket-ghost tour guide ----------
+(function () {
+    const mascot = document.getElementById('scrollMascot');
+    const bubble = document.getElementById('mascotBubble');
+    if (!mascot || !bubble) return;
+
+    const messages = {
+        top: "Welcome! My name is Bob, and I'll be your guide through Sisekelo's portfolio.",
+        about: "Here is the person behind the products. Sisekelo builds practical systems for real South African challenges.",
+        education: "These are Sisekelo's key academic achievements — from his ICT Diploma to his current Honours degree.",
+        experience: "This is where Sisekelo turned knowledge into experience through development, tutoring and real project work.",
+        work: "Now for the exciting part — these are some of the systems Sisekelo has designed and built.",
+        'github-activity': "Here is a glimpse of Sisekelo's development activity and the consistency behind his work.",
+        skills: "These are the tools Sisekelo uses to turn ideas into reliable, full-stack products.",
+        certificates: "These certifications show Sisekelo's commitment to continuous learning across AI, cloud and cybersecurity.",
+        resume: "Need the full story? Sisekelo's résumé is available here to view or download.",
+        contact: "Like what you have seen? This is the best place to start a conversation with Sisekelo.",
+        footer: "I hope you enjoyed learning more about Sisekelo Mhlamvu. Have a great day!"
+    };
+
+    let currentProgress = 0;
+    let targetProgress = 0;
+    let lastProgress = 0;
+    let bubbleTimer;
+    let activeKey = '';
+
+    function keepBubbleInViewport() {
+        if (!bubble.classList.contains('is-visible')) return;
+        bubble.style.setProperty('--bubble-shift-x', '0px');
+        bubble.style.setProperty('--bubble-arrow-x', '50%');
+
+        const margin = 10;
+        const mascotRect = mascot.getBoundingClientRect();
+        const bubbleRect = bubble.getBoundingClientRect();
+        let shift = 0;
+
+        if (bubbleRect.left < margin) shift += margin - bubbleRect.left;
+        if (bubbleRect.right + shift > window.innerWidth - margin) {
+            shift -= (bubbleRect.right + shift) - (window.innerWidth - margin);
+        }
+
+        bubble.style.setProperty('--bubble-shift-x', `${shift}px`);
+
+        // Keep the speech-tail aimed at Bob even when the bubble is shifted.
+        const bubbleWidth = bubbleRect.width || 1;
+        const mascotCenter = mascotRect.left + mascotRect.width / 2;
+        const adjustedBubbleLeft = bubbleRect.left + shift;
+        const arrowPercent = Math.max(10, Math.min(90, ((mascotCenter - adjustedBubbleLeft) / bubbleWidth) * 100));
+        bubble.style.setProperty('--bubble-arrow-x', `${arrowPercent}%`);
+    }
+
+    function say(key, hold = 5200) {
+        if (!messages[key] || activeKey === key) return;
+        activeKey = key;
+        clearTimeout(bubbleTimer);
+        bubble.textContent = messages[key];
+        bubble.classList.add('is-visible');
+        mascot.classList.add('is-speaking');
+        requestAnimationFrame(keepBubbleInViewport);
+        bubbleTimer = setTimeout(() => {
+            bubble.classList.remove('is-visible');
+            mascot.classList.remove('is-speaking');
+        }, hold);
+    }
+
+    const targets = [document.getElementById('top'), ...document.querySelectorAll('section[id]'), document.querySelector('footer')].filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+        const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
+        if (!visible) return;
+        const key = visible.target.tagName === 'FOOTER' ? 'footer' : visible.target.id;
+        say(key, key === 'footer' ? 7000 : 5200);
+    }, { threshold:[.25,.45,.65], rootMargin:'-18% 0px -28% 0px' });
+    targets.forEach(t => observer.observe(t));
+
+    setTimeout(() => say('top', 6500), 700);
+
+    if (prefersReducedMotion) {
+        mascot.style.transform = 'translateX(calc(50vw - 30px))';
+        return;
+    }
+
+    function frame() {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        targetProgress = docHeight > 0 ? Math.min(1, Math.max(0, window.scrollY / docHeight)) : 0;
+        currentProgress += (targetProgress - currentProgress) * .035;
+        const x = currentProgress * Math.max(0, window.innerWidth - 66);
+        mascot.style.transform = `translateX(${x}px)`;
+        keepBubbleInViewport();
+        const moving = Math.abs(currentProgress - lastProgress) > .0006;
+        mascot.classList.toggle('is-walking', moving);
+        mascot.classList.toggle('is-dancing', currentProgress >= .965);
+        lastProgress = currentProgress;
+        requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+    window.addEventListener('resize', keepBubbleInViewport);
+})();
+
 // ---------- Mobile nav toggle ----------
 (function () {
     const toggleBtn = document.getElementById('navToggle');
-    const panel = document.getElementById('navMobilePanel');
-    if (!toggleBtn || !panel) return;
+    const navLinks = document.getElementById('navLinks');
+    if (!toggleBtn || !navLinks) return;
 
-    function closePanel() {
-        panel.classList.remove('is-open');
+    function closeMenu() {
+        navLinks.classList.remove('is-open');
         toggleBtn.classList.remove('is-open');
         toggleBtn.setAttribute('aria-expanded', 'false');
     }
 
     toggleBtn.addEventListener('click', () => {
-        const isOpen = panel.classList.toggle('is-open');
+        const isOpen = navLinks.classList.toggle('is-open');
         toggleBtn.classList.toggle('is-open', isOpen);
         toggleBtn.setAttribute('aria-expanded', String(isOpen));
     });
 
-    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closePanel));
-
-    document.addEventListener('click', (e) => {
-        if (!panel.classList.contains('is-open')) return;
-        if (panel.contains(e.target) || toggleBtn.contains(e.target)) return;
-        closePanel();
-    });
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 780) closePanel();
-    });
+    // Close the menu after tapping a link, or when the viewport is resized back to desktop
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => { if (window.innerWidth > 780) closeMenu(); });
 })();
 
 // ---------- Cursor glow ----------
@@ -114,42 +204,10 @@ function attachTilt(el, strength) {
 attachTilt(document.querySelector('.glass-card-photo'), 6);
 document.querySelectorAll('.project-card').forEach(card => attachTilt(card, 3));
 
-// ---------- Walking mascot: strolls across whenever you enter a new section ----------
-(function () {
-    const mascot = document.getElementById('mascotWalker');
-    if (!mascot || prefersReducedMotion) return;
-
-    let lastSectionId = null;
-
-    function walk() {
-        mascot.classList.remove('is-walking');
-        // Force reflow so the animation restarts cleanly if triggered again quickly.
-        void mascot.offsetWidth;
-        mascot.classList.add('is-walking');
-    }
-
-    mascot.addEventListener('animationend', () => mascot.classList.remove('is-walking'));
-
-    if ('IntersectionObserver' in window) {
-        const mascotObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.id !== lastSectionId) {
-                    lastSectionId = entry.target.id;
-                    walk();
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('section[id]').forEach(sec => mascotObserver.observe(sec));
-    }
-})();
-
 // ---------- Nav scroll-spy with sliding indicator ----------
 const navLinkEls = document.querySelectorAll('.nav-links a[data-section]');
-const mobileNavLinkEls = document.querySelectorAll('.nav-mobile-links a[data-section]');
 const navIndicator = document.getElementById('navIndicator');
-const sectionEls = Array.from(mobileNavLinkEls.length ? mobileNavLinkEls : navLinkEls)
-    .map(a => document.getElementById(a.dataset.section)).filter(Boolean);
+const sectionEls = Array.from(navLinkEls).map(a => document.getElementById(a.dataset.section)).filter(Boolean);
 
 function moveIndicator(link) {
     if (!link || !navIndicator) return;
@@ -162,15 +220,11 @@ if ('IntersectionObserver' in window && sectionEls.length) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 navLinkEls.forEach(a => a.classList.remove('active'));
-                mobileNavLinkEls.forEach(a => a.classList.remove('active'));
-
                 const activeLink = document.querySelector(`.nav-links a[data-section="${entry.target.id}"]`);
                 if (activeLink) {
                     activeLink.classList.add('active');
                     moveIndicator(activeLink);
                 }
-                const activeMobileLink = document.querySelector(`.nav-mobile-links a[data-section="${entry.target.id}"]`);
-                if (activeMobileLink) activeMobileLink.classList.add('active');
             }
         });
     }, { rootMargin: '-40% 0px -50% 0px' });
@@ -209,13 +263,7 @@ if ('IntersectionObserver' in window) {
     revealEls.forEach(el => el.classList.add('in-view'));
 }
 
-// ---------- Contact form (EmailJS, with a fallback that always works) ----------
-const EMAILJS_PUBLIC_KEY = 'xkZ4rlI6UCwn4hmN7';
-const EMAILJS_SERVICE_ID = 'service_c5onzro';
-const EMAILJS_TEMPLATE_ID = 'template_cbk62ha';
-const CONTACT_EMAIL = 'svmhlamvu@gmail.com';
-
-let emailjsReady = false;
+// ---------- Contact form (EmailJS) ----------
 let emailjsLoadFailed = false;
 
 (function () {
@@ -223,71 +271,75 @@ let emailjsLoadFailed = false;
     script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
     script.onload = () => {
         try {
-            emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-            emailjsReady = true;
-        } catch (err) {
+            emailjs.init({ publicKey: 'xkZ4rlI6UCwn4hmN7' });
+        } catch (e) {
             emailjsLoadFailed = true;
-            console.error('EmailJS init failed:', err);
+            console.error('EmailJS init failed:', e);
         }
     };
-    script.onerror = () => {
-        emailjsLoadFailed = true;
-        console.error('EmailJS script failed to load (network/ad-blocker/CDN issue).');
-    };
+    script.onerror = () => { emailjsLoadFailed = true; };
     document.head.appendChild(script);
 })();
 
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
+const submitBtn = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
 
-function buildMailtoFallback(form) {
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
-    const subject = encodeURIComponent(`Portfolio contact from ${name || 'website visitor'}`);
+function buildMailtoFallback() {
+    const name = contactForm.name.value.trim();
+    const email = contactForm.email.value.trim();
+    const message = contactForm.message.value.trim();
+    const subject = encodeURIComponent(`Portfolio enquiry from ${name || 'website visitor'}`);
     const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    return `mailto:svmhlamvu@gmail.com?subject=${subject}&body=${body}`;
 }
 
-function showMailtoFallback(form, reason) {
-    formStatus.innerHTML = `${reason} <a href="${buildMailtoFallback(form)}">Click here to email me directly instead</a>.`;
+function showFallback(reasonText) {
+    formStatus.innerHTML = `${reasonText} Your message wasn't lost — <a href="${buildMailtoFallback()}" style="text-decoration:underline;">click here to send it via your email app</a> instead.`;
     formStatus.className = 'error';
 }
 
-contactForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    const form = this;
+if (contactForm) {
+    contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    if (emailjsLoadFailed) {
-        showMailtoFallback(form, 'The message service couldn\'t load.');
-        return;
-    }
+        if (submitBtn && submitBtn.disabled) return; // guard against double-submit
 
-    if (typeof emailjs === 'undefined' || !emailjsReady) {
-        formStatus.textContent = 'Still loading — try again in a moment.';
-        formStatus.className = '';
-        // Give it a few seconds, then fall back if it never becomes ready.
-        setTimeout(() => {
-            if (!emailjsReady) showMailtoFallback(form, 'The message service is taking too long.');
-        }, 4000);
-        return;
-    }
-
-    formStatus.textContent = 'Sending...';
-    formStatus.className = '';
-
-    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form).then(
-        function () {
-            formStatus.textContent = 'Message sent — thanks, I\'ll get back to you soon.';
-            formStatus.className = 'success';
-            contactForm.reset();
-        },
-        function (error) {
-            // Common causes: EmailJS free-tier quota reached, the service/template
-            // was deleted or renamed in the EmailJS dashboard, or the allowed
-            // domains list under Account > Security no longer includes this site.
-            console.error('EmailJS error:', error);
-            showMailtoFallback(form, 'Something went wrong sending that.');
+        if (emailjsLoadFailed || typeof emailjs === 'undefined') {
+            // Give the script one last moment to finish loading before falling back
+            if (typeof emailjs === 'undefined' && !emailjsLoadFailed) {
+                formStatus.textContent = 'Still loading — try again in a moment.';
+                formStatus.className = '';
+                return;
+            }
+            showFallback('The message service didn\'t load.');
+            return;
         }
-    );
-});
+
+        if (submitBtn) submitBtn.disabled = true;
+        formStatus.textContent = 'Sending...';
+        formStatus.className = '';
+
+        // Safety timeout in case the request hangs indefinitely
+        const timeout = setTimeout(() => {
+            if (submitBtn) submitBtn.disabled = false;
+            showFallback('That\'s taking too long, so it may not have gone through.');
+        }, 12000);
+
+        emailjs.sendForm('service_c5onzro', 'template_cbk62ha', this).then(
+            function () {
+                clearTimeout(timeout);
+                if (submitBtn) submitBtn.disabled = false;
+                formStatus.textContent = 'Message sent — thanks, I\'ll get back to you soon.';
+                formStatus.className = 'success';
+                contactForm.reset();
+            },
+            function (error) {
+                clearTimeout(timeout);
+                if (submitBtn) submitBtn.disabled = false;
+                console.error('EmailJS error:', error);
+                showFallback('Something went wrong sending that.');
+            }
+        );
+    });
+}
