@@ -23,6 +23,37 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     }
 })();
 
+// ---------- Mobile nav toggle ----------
+(function () {
+    const toggleBtn = document.getElementById('navToggle');
+    const panel = document.getElementById('navMobilePanel');
+    if (!toggleBtn || !panel) return;
+
+    function closePanel() {
+        panel.classList.remove('is-open');
+        toggleBtn.classList.remove('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        const isOpen = panel.classList.toggle('is-open');
+        toggleBtn.classList.toggle('is-open', isOpen);
+        toggleBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closePanel));
+
+    document.addEventListener('click', (e) => {
+        if (!panel.classList.contains('is-open')) return;
+        if (panel.contains(e.target) || toggleBtn.contains(e.target)) return;
+        closePanel();
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 780) closePanel();
+    });
+})();
+
 // ---------- Cursor glow ----------
 const cursorGlow = document.getElementById('cursorGlow');
 if (cursorGlow && !prefersReducedMotion) {
@@ -83,10 +114,42 @@ function attachTilt(el, strength) {
 attachTilt(document.querySelector('.glass-card-photo'), 6);
 document.querySelectorAll('.project-card').forEach(card => attachTilt(card, 3));
 
+// ---------- Walking mascot: strolls across whenever you enter a new section ----------
+(function () {
+    const mascot = document.getElementById('mascotWalker');
+    if (!mascot || prefersReducedMotion) return;
+
+    let lastSectionId = null;
+
+    function walk() {
+        mascot.classList.remove('is-walking');
+        // Force reflow so the animation restarts cleanly if triggered again quickly.
+        void mascot.offsetWidth;
+        mascot.classList.add('is-walking');
+    }
+
+    mascot.addEventListener('animationend', () => mascot.classList.remove('is-walking'));
+
+    if ('IntersectionObserver' in window) {
+        const mascotObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.id !== lastSectionId) {
+                    lastSectionId = entry.target.id;
+                    walk();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('section[id]').forEach(sec => mascotObserver.observe(sec));
+    }
+})();
+
 // ---------- Nav scroll-spy with sliding indicator ----------
 const navLinkEls = document.querySelectorAll('.nav-links a[data-section]');
+const mobileNavLinkEls = document.querySelectorAll('.nav-mobile-links a[data-section]');
 const navIndicator = document.getElementById('navIndicator');
-const sectionEls = Array.from(navLinkEls).map(a => document.getElementById(a.dataset.section)).filter(Boolean);
+const sectionEls = Array.from(mobileNavLinkEls.length ? mobileNavLinkEls : navLinkEls)
+    .map(a => document.getElementById(a.dataset.section)).filter(Boolean);
 
 function moveIndicator(link) {
     if (!link || !navIndicator) return;
@@ -99,11 +162,15 @@ if ('IntersectionObserver' in window && sectionEls.length) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 navLinkEls.forEach(a => a.classList.remove('active'));
+                mobileNavLinkEls.forEach(a => a.classList.remove('active'));
+
                 const activeLink = document.querySelector(`.nav-links a[data-section="${entry.target.id}"]`);
                 if (activeLink) {
                     activeLink.classList.add('active');
                     moveIndicator(activeLink);
                 }
+                const activeMobileLink = document.querySelector(`.nav-mobile-links a[data-section="${entry.target.id}"]`);
+                if (activeMobileLink) activeMobileLink.classList.add('active');
             }
         });
     }, { rootMargin: '-40% 0px -50% 0px' });
@@ -142,12 +209,30 @@ if ('IntersectionObserver' in window) {
     revealEls.forEach(el => el.classList.add('in-view'));
 }
 
-// ---------- Contact form (EmailJS) ----------
+// ---------- Contact form (EmailJS, with a fallback that always works) ----------
+const EMAILJS_PUBLIC_KEY = 'xkZ4rlI6UCwn4hmN7';
+const EMAILJS_SERVICE_ID = 'service_c5onzro';
+const EMAILJS_TEMPLATE_ID = 'template_cbk62ha';
+const CONTACT_EMAIL = 'svmhlamvu@gmail.com';
+
+let emailjsReady = false;
+let emailjsLoadFailed = false;
+
 (function () {
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
     script.onload = () => {
-        emailjs.init({ publicKey: 'xkZ4rlI6UCwn4hmN7' });
+        try {
+            emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+            emailjsReady = true;
+        } catch (err) {
+            emailjsLoadFailed = true;
+            console.error('EmailJS init failed:', err);
+        }
+    };
+    script.onerror = () => {
+        emailjsLoadFailed = true;
+        console.error('EmailJS script failed to load (network/ad-blocker/CDN issue).');
     };
     document.head.appendChild(script);
 })();
@@ -155,28 +240,54 @@ if ('IntersectionObserver' in window) {
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
 
+function buildMailtoFallback(form) {
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+    const subject = encodeURIComponent(`Portfolio contact from ${name || 'website visitor'}`);
+    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+    return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+}
+
+function showMailtoFallback(form, reason) {
+    formStatus.innerHTML = `${reason} <a href="${buildMailtoFallback(form)}">Click here to email me directly instead</a>.`;
+    formStatus.className = 'error';
+}
+
 contactForm.addEventListener('submit', function (event) {
     event.preventDefault();
+    const form = this;
 
-    if (typeof emailjs === 'undefined') {
+    if (emailjsLoadFailed) {
+        showMailtoFallback(form, 'The message service couldn\'t load.');
+        return;
+    }
+
+    if (typeof emailjs === 'undefined' || !emailjsReady) {
         formStatus.textContent = 'Still loading — try again in a moment.';
-        formStatus.className = 'error';
+        formStatus.className = '';
+        // Give it a few seconds, then fall back if it never becomes ready.
+        setTimeout(() => {
+            if (!emailjsReady) showMailtoFallback(form, 'The message service is taking too long.');
+        }, 4000);
         return;
     }
 
     formStatus.textContent = 'Sending...';
     formStatus.className = '';
 
-    emailjs.sendForm('service_c5onzro', 'template_cbk62ha', this).then(
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form).then(
         function () {
             formStatus.textContent = 'Message sent — thanks, I\'ll get back to you soon.';
             formStatus.className = 'success';
             contactForm.reset();
         },
         function (error) {
-            formStatus.textContent = 'Something went wrong — please try again or email me directly.';
-            formStatus.className = 'error';
+            // Common causes: EmailJS free-tier quota reached, the service/template
+            // was deleted or renamed in the EmailJS dashboard, or the allowed
+            // domains list under Account > Security no longer includes this site.
             console.error('EmailJS error:', error);
+            showMailtoFallback(form, 'Something went wrong sending that.');
         }
     );
 });
