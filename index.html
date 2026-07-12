@@ -1,498 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sisekelo Mhlamvu | Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sisekelo Mhlamvu — Full-Stack Developer</title>
+<meta name="description" content="Sisekelo Mhlamvu — full-stack developer based in Durban, South Africa. ICT Honours candidate at DUT, building systems for freight, allocation and community platforms.">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sisekelo Mhlamvu — Full-Stack Developer">
+<meta property="og:description" content="Full-stack developer based in Durban, South Africa building freight logistics, seat allocation and developer-tooling platforms. ICT Honours candidate at DUT.">
+<meta property="og:image" content="https://sisekelo-portfoilo.vercel.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://sisekelo-portfoilo.vercel.app">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sisekelo Mhlamvu — Full-Stack Developer">
+<meta name="twitter:description" content="Full-stack developer based in Durban, South Africa building freight logistics, seat allocation and developer-tooling platforms.">
+<meta name="twitter:image" content="https://sisekelo-portfoilo.vercel.app/assets/og-image.png">
+
+<link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+<body>
 
-  <!-- Hero Section -->
-  <section class="h-screen bg-gradient-to-br from-gray-100 via-white to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 flex flex-col justify-center items-center px-4 relative overflow-hidden">
+<div class="cursor-glow" id="cursorGlow"></div>
 
-    <!-- Light/Dark Mode Toggle -->
-    <button onclick="toggleTheme()" class="absolute top-5 right-5 bg-gray-200 dark:bg-gray-700 text-sm px-3 py-1 rounded shadow hover:bg-gray-300 dark:hover:bg-gray-600 transition">
-      Toggle Theme
-    </button>
-
-    <!-- Profile Image -->
-    <img src="assets/images/seko2.jpeg" alt="Sisekelo Mhlamvu" class="w-48 h-48 rounded-full shadow-lg mb-6 border-4 border-white" />
-
-    <!-- Name and Title -->
-    <h1 class="text-4xl md:text-6xl font-bold mb-2">Sisekelo Mhlamvu</h1>
-    <p class="text-xl md:text-2xl font-medium mb-4">Web Developer | Designer | Code Enthusiast</p>
-
-    <!-- Typewriter Tagline -->
-    <div class="text-lg md:text-xl typewriter">
-      <span id="typewriter-text" class="text-blue-700 dark:text-blue-400"></span>
-    </div>
-
-    <!-- Social Icons -->
-    <div class="flex space-x-8 mb-8 mt-6">
-      <!-- GitHub -->
-      <a href="https://github.com/Siseko23" target="_blank" class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition" aria-label="GitHub">
-        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.9 1.2 2 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0012 .3z" />
-        </svg>
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#top" class="nav-brand">Sisekelo Mhlamvu</a>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-indicator" id="navIndicator"></li>
+      <li><a href="#about" data-section="about">About</a></li>
+      <li><a href="#experience" data-section="experience">Experience</a></li>
+      <li><a href="#work" data-section="work">Work</a></li>
+      <li><a href="#skills" data-section="skills">Skills</a></li>
+      <li><a href="#contact" data-section="contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Let's talk</a>
+    <div class="nav-social">
+      <a href="https://www.linkedin.com/in/sisekelo-mhlamvu-2576a1315" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.25 2.37 4.25 5.44v6.3ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
       </a>
-
-      <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/in/sisekelo-mhlamvu-2576a1315" target="_blank" class="text-blue-600 hover:text-blue-800 dark:hover:text-blue-300 transition" aria-label="LinkedIn">
-        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M20.45 20.45h-3.55v-5.25c0-1.25-.02-2.85-1.75-2.85-1.75 0-2.02 1.37-2.02 2.75v5.35h-3.55V9h3.41v1.56h.05c.47-.89 1.62-1.82 3.34-1.82 3.57 0 4.22 2.35 4.22 5.4v6.3zM5.34 7.43c-1.15 0-2.08-.94-2.08-2.1 0-1.16.94-2.1 2.08-2.1 1.16 0 2.1.94 2.1 2.1 0 1.16-.94 2.1-2.1 2.1zM7.13 20.45H3.55V9h3.58v11.45zM22.22 0H1.77C.8 0 0 .8 0 1.77v20.45C0 23.2.8 24 1.77 24h20.45c.97 0 1.78-.8 1.78-1.78V1.77C24 .8 23.2 0 22.22 0z"/>
-        </svg>
+      <a href="https://www.instagram.com/sisekelo_mhlamvu?igsh=dDZ2aW4wdzQ2Yjl5&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"/></svg>
       </a>
-    </div>
-
-    <!-- Scroll Down Button -->
-    <a href="#about" class="mt-10 text-blue-500 hover:text-blue-700 dark:hover:text-blue-300 text-sm">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 animate-bounce mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-      Scroll Down
-    </a>
-
-  </section>
-
-  <!-- Typewriter Script -->
-  <script>
-    const texts = [
-      'Crafting code into experiences.',
-      'Turning ideas into websites.',
-      'Building modern digital portfolios.'
-    ];
-
-    let count = 0;
-    let index = 0;
-    let currentText = '';
-    let letter = '';
-
-    (function type() {
-      if (count === texts.length) {
-        count = 0;
-      }
-      currentText = texts[count];
-      letter = currentText.slice(0, ++index);
-      document.getElementById('typewriter-text').textContent = letter;
-
-      if (letter.length === currentText.length) {
-        count++;
-        index = 0;
-        setTimeout(type, 1500); // pause between phrases
-      } else {
-        setTimeout(type, 100); // typing speed
-      }
-    })();
-  </script>
-
-  <!-- Theme Toggle Script -->
-  <script>
-    function toggleTheme() {
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }
-
-    // On page load
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add('dark');
-    }
-  </script>
-
-   <!-- About Section -->
-  <section id="about" class="py-20 px-6 bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-      
-      <!-- Image + Button -->
-      <div class="flex flex-col items-center">
-        <img src="assets/images/seko1.jpeg" alt="About Sisekelo" 
-             class="w-64 h-64 object-cover rounded-2xl shadow-lg border-4 border-blue-100 dark:border-blue-700" />
-        
-        <!-- Download CV Button -->
-        <a href="files/Sisekelo_Vuyolwethu_Mhlamvu_CV (AutoRecovered).pdf" download
-           class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition">
-            View Resume
-        </a>
-      </div>
-
-      <!-- Text Content -->
-      <div>
-        <h2 class="text-3xl font-bold mb-4 text-blue-600 dark:text-blue-400">About Me</h2>
-        <p class="text-lg leading-relaxed mb-4">
-          Hello! I'm <strong>Sisekelo Mhlamvu</strong>, a passionate web developer based in South Africa. I specialize in building modern, responsive websites using clean and efficient code.
-        </p>
-        <p class="text-lg leading-relaxed mb-4">
-          With a background in design and development, I bring creative ideas to life through HTML, CSS, JavaScript, and modern frameworks. Whether it's crafting beautiful UI or writing powerful backend logic, I enjoy every step of the process.
-        </p>
-        <p class="text-lg leading-relaxed">
-          I'm always learning, experimenting, and collaborating to build better digital experiences. Let’s build something great together!
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="py-20 px-6 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-10 text-blue-600 dark:text-blue-400">Professional Skills</h2>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left">
-        
-        <!-- Skill Item -->
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
-          <div class="flex items-center space-x-4 mb-4">
-            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 17v-6h13V7H2v4h4v6h3z"/>
-            </svg>
-            <h3 class="text-xl font-semibold">Teamwork</h3>
-          </div>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Collaborates effectively in group projects and communicates clearly with team members.</p>
-        </div>
-
-        <!-- Skill Item -->
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
-          <div class="flex items-center space-x-4 mb-4">
-            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 12l2 2 4-4M7 8h14a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V10a2 2 0 012-2z" />
-            </svg>
-            <h3 class="text-xl font-semibold">Problem Solving</h3>
-          </div>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Able to analyze complex problems and find efficient solutions quickly.</p>
-        </div>
-
-        <!-- Skill Item -->
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
-          <div class="flex items-center space-x-4 mb-4">
-            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" />
-            </svg>
-            <h3 class="text-xl font-semibold">Time Management</h3>
-          </div>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Manages deadlines efficiently and delivers work on time with consistency.</p>
-        </div>
-
-        <!-- Skill Item -->
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
-          <div class="flex items-center space-x-4 mb-4">
-            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M5 13l4 4L19 7" />
-            </svg>
-            <h3 class="text-xl font-semibold">Attention to Detail</h3>
-          </div>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Ensures that every part of a project meets quality standards and is error-free.</p>
-        </div>
-
-        <!-- Skill Item -->
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
-          <div class="flex items-center space-x-4 mb-4">
-            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M12 6v6l4 2" />
-            </svg>
-            <h3 class="text-xl font-semibold">Adaptability</h3>
-          </div>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Quickly adjusts to changes in tools, teams, and technologies.</p>
-        </div>
-
-        <!-- Skill Item -->
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
-          <div class="flex items-center space-x-4 mb-4">
-            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M3 12l2-2 4 4 8-8 4 4" />
-            </svg>
-            <h3 class="text-xl font-semibold">Creativity</h3>
-          </div>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Brings fresh ideas and innovation to each project to make it stand out.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-  <section id="skills" style="padding: 80px 24px; background-color: white; color: #2d3748;">
-  <div style="max-width: 960px; margin: 0 auto;">
-    <h2 style="font-size: 28px; font-weight: 600; margin-bottom: 48px; text-align: center; color: #1a202c;">Code Based Skills</h2>
-
-    <div style="display: grid; grid-template-columns: 1fr; gap: 64px; max-width: 100%;">
-      <!-- For medium and up, use media query -->
-      <style>
-        @media (min-width: 768px) {
-          #skills .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-          }
-        }
-      </style>
-
-      <div class="skills-grid">
-        <!-- Frontend Skills -->
-        <div>
-          <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 32px; color: #2563eb;">Frontend Skills</h3>
-
-          <div style="margin-bottom: 32px;">
-            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
-              <span>HTML5</span><span>90%</span>
-            </div>
-            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
-              <div style="height: 12px; width: 90%; background: #2563eb; border-radius: 6px;"></div>
-            </div>
-          </div>
-
-          <div style="margin-bottom: 32px;">
-            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
-              <span>CSS3</span><span>85%</span>
-            </div>
-            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
-              <div style="height: 12px; width: 85%; background: #2563eb; border-radius: 6px;"></div>
-            </div>
-          </div>
-
-          <div style="margin-bottom: 32px;">
-            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
-              <span>JavaScript</span><span>80%</span>
-            </div>
-            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
-              <div style="height: 12px; width: 80%; background: #facc15; border-radius: 6px;"></div>
-            </div>
-          </div>
-
-          <div style="margin-bottom: 32px;">
-            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
-              <span>React</span><span>75%</span>
-            </div>
-            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
-              <div style="height: 12px; width: 75%; background: #06b6d4; border-radius: 6px;"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Backend Skills -->
-        <div>
-          <h3 style="font-size: 22px; font-weight: 600; margin-bottom: 32px; color: #16a34a;">Backend Skills</h3>
-
-          <div style="margin-bottom: 32px;">
-            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
-              <span>Python</span><span>75%</span>
-            </div>
-            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
-              <div style="height: 12px; width: 75%; background: #16a34a; border-radius: 6px;"></div>
-            </div>
-          </div>
-
-          <div style="margin-bottom: 32px;">
-            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
-              <span>C#</span><span>70%</span>
-            </div>
-            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
-              <div style="height: 12px; width: 70%; background: #6366f1; border-radius: 6px;"></div>
-            </div>
-          </div>
-
-          <div style="margin-bottom: 32px;">
-            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
-              <span>Java</span><span>70%</span>
-            </div>
-            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
-              <div style="height: 12px; width: 70%; background: #84cc16; border-radius: 6px;"></div>
-            </div>
-          </div>
-
-          <div style="margin-bottom: 32px;">
-            <div style="display: flex; justify-content: space-between; font-size: 16px; font-weight: 500; margin-bottom: 4px;">
-              <span>SQL</span><span>95%</span>
-            </div>
-            <div style="height: 12px; background: #e2e8f0; border-radius: 6px;">
-              <div style="height: 12px; width: 95%; background: #f59e0b; border-radius: 6px;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section id="certificates" style="padding: 80px 24px; background-color: #f9fafb; color: #1a202c;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 style="font-size: 28px; font-weight: bold; text-align: center; margin-bottom: 48px; color: #2563eb;">My Certificates</h2>
-
-    <div style="display: grid; grid-template-columns: 1fr; gap: 32px;">
-      <style>
-        @media (min-width: 768px) {
-          #certificates .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-          }
-        }
-
-        @media (min-width: 1024px) {
-          #certificates .cert-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
-      </style>
-
-      <div class="cert-grid">
-        <!-- Certificate Items -->
-        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Introduction to Cybersecurity</h3>
-            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Cisco</p>
-          </div>
-          <a href="files/Introduction_to_Cybersecurity_Badge20250109-26-kh26ki (2).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
-        </div>
-
-        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">AI Fundamentals</h3>
-            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
-          </div>
-          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (5) (1).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
-        </div>
-
-        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Generativ AI</h3>
-            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
-          </div>
-          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (4) (1).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
-        </div>
-
-        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Search Technology</h3>
-            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
-          </div>
-          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (3) (1).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
-        </div>
-
-        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Microsoft Copilot</h3>
-            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
-          </div>
-          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (2) (1).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
-        </div>
-
-        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Resposible AI</h3>
-            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
-          </div>
-          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (1) (1).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
-        </div>
-
-        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">AI and Accessibility</h3>
-            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
-          </div>
-          <a href="files/Certificate-a6d02104-33ce-4097-89f0-58c62d3533d2 (6).pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
-        </div>
-
-        <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</h3>
-            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
-          </div>
-          <a href="files/ecertificate.pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
-        </div>
-          <div style="background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
-          <div>
-            <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Fnb App Academy 2025</h3>
-            <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">Issued by Microsoft</p>
-          </div>
-          <a href="files/Sisekelo-2-6882BA74B71C1-2025-07-25-00-57-56.pdf" target="_blank" style="color: #2563eb; text-decoration: underline; margin-top: auto;">View Certificate →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Contact Section -->
-<section id="contact" class="py-20 px-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-  <div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-10">
-    <h2 class="text-4xl font-bold text-center text-blue-600 dark:text-blue-400 mb-10">Contact Me</h2>
-
-    <form id="contact-form" class="space-y-6">
-      <div>
-        <label for="name" class="block mb-2 font-semibold">Name</label>
-        <input id="name" name="name" type="text" required placeholder="Your full name"
-          class="w-full px-4 py-3 rounded-md border border-gray-300" />
-      </div>
-
-      <div>
-        <label for="email" class="block mb-2 font-semibold">Email</label>
-        <input id="email" name="email" type="email" required placeholder="your.email@example.com"
-          class="w-full px-4 py-3 rounded-md border border-gray-300" />
-      </div>
-
-      <div>
-        <label for="message" class="block mb-2 font-semibold">Message</label>
-        <textarea id="message" name="message" required placeholder="Write your message here..."
-          class="w-full px-4 py-3 rounded-md border border-gray-300 resize-y min-h-[120px]"></textarea>
-      </div>
-
-      <button type="submit"
-        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition-colors duration-300">
-        Send Message
+      <a href="https://github.com/Siseko23" target="_blank" rel="noopener" aria-label="GitHub" class="social-icon">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .3.2.66.79.55C20.21 21.38 23.5 17.07 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
+      </a>
+      <a href="mailto:svmhlamvu@gmail.com" aria-label="Email" class="social-icon">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/><path d="m3.5 6 8.5 7 8.5-7"/></svg>
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme" type="button">
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
       </button>
-    </form>
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script type="text/javascript">
-      (function () {
-        emailjs.init({
-          publicKey: "xkZ4rlI6UCwn4hmN7" // Replace with your actual public key
-        });
-      })();
-
-      document.getElementById('contact-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        emailjs.sendForm('service_c5onzro', 'template_cbk62ha', this)
-          .then(function () {
-            alert('Message sent successfully!');
-            document.getElementById('contact-form').reset();
-          }, function (error) {
-            alert('Failed to send message, please try again.');
-            console.error('EmailJS error:', error);
-          });
-      });
-    </script>
+    </div>
   </div>
-</section>
+</nav>
 
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-main">
+      <div>
+        <div class="pill" style="margin-bottom:28px;"><span class="dot-live"></span> Available for opportunities &middot; Durban, SA</div>
+        <h1>Full-stack developer<br>building <em>systems</em><br>that ship.</h1>
+        <p class="hero-sub">I design and build platforms for the South African market — freight logistics, seat allocation, developer tooling. ICT Honours candidate at DUT.</p>
+        <div class="hero-ctas">
+          <a href="#work" class="btn-solid">View my work →</a>
+          <a href="files/Sisekelo_Mhlamvu_CV.pdf" download class="btn-ghost">Download CV</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="num" data-count="6">0</div><div class="label">Systems shipped</div></div>
+          <div class="stat"><div class="num" data-count="3" data-suffix="+">0</div><div class="label">Years building</div></div>
+          <div class="stat"><div class="num" data-count="9">0</div><div class="label">Certifications</div></div>
+        </div>
+      </div>
 
+      <div class="glass glass-card-photo">
+        <div class="glass-tag top-right"><span class="dot-live"></span> Open to work</div>
+        <div class="glass-photo-inner"><img src="assets/images/seko2.jpeg" alt="Sisekelo Mhlamvu"></div>
+        <div class="glass-tag bottom-left">🚀 6 live projects</div>
+        <div class="glass-card-name">Sisekelo Mhlamvu</div>
+        <div class="glass-card-role">Full-Stack Developer, DUT</div>
+      </div>
+    </div>
+  </div>
+</header>
 
-    <div class="mt-12 text-center space-y-4 text-gray-700 dark:text-gray-300">
-      <p><strong>Phone:</strong> <a href="tel:065 856 4192" class="text-blue-600 hover:underline">+27 65 856 4192</a></p>
-      <p><strong>Email:</strong> <a href="mailto:svmhlamvu@gmail.com" class="text-blue-600 hover:underline">svmhlamvu@gmail.com</a></p>
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-photo glass"><img src="assets/images/seko1.jpeg" alt="Sisekelo Mhlamvu working"></div>
+      <div class="about-copy reveal">
+        <div class="eyebrow-num">01 — About</div>
+        <div class="section-head"><h2>Building systems for the South African market</h2></div>
+        <p>I'm an ICT professional based in Durban, currently completing my Bachelor of ICT Honours at Durban University of Technology, having already earned an Advanced Diploma and a Diploma in ICT (Application Development) there.</p>
+        <p>My work sits at the intersection of full-stack development and systems that manage real processes — freight moving through a supply chain, seats filling up across training sessions, participants flowing through a booking pipeline. I like problems with actual constraints: capacity limits, validation rules, things that have to add up correctly.</p>
+        <p>I'm currently a Software Developer Intern at PowerBrand and an IT Tutor at DUT, where I help students work through databases, SQL and system logic.</p>
 
-      <div class="mt-6 flex justify-center space-x-8 text-2xl text-blue-600 dark:text-blue-400">
-        <a href="https://github.com/Siseko23" target="_blank" aria-label="GitHub" title="GitHub" class="hover:text-blue-800">
-          <!-- GitHub SVG Icon -->
-          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.9 1.2 2 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0012 .3z" />
-          </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/sisekelo-mhlamvu-2576a1315" target="_blank" aria-label="LinkedIn" title="LinkedIn" class="hover:text-blue-800">
-          <!-- LinkedIn SVG Icon -->
-          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M20.45 20.45h-3.55v-5.25c0-1.25-.02-2.85-1.75-2.85-1.75 0-2.02 1.37-2.02 2.75v5.35h-3.55V9h3.41v1.56h.05c.47-.89 1.62-1.82 3.34-1.82 3.57 0 4.22 2.35 4.22 5.4v6.3zM5.34 7.43c-1.15 0-2.08-.94-2.08-2.1 0-1.16.94-2.1 2.08-2.1 1.16 0 2.1.94 2.1 2.1 0 1.16-.94 2.1-2.1 2.1zM7.13 20.45H3.55V9h3.58v11.45zM22.22 0H1.77C.8 0 0 .8 0 1.77v20.45C0 23.2.8 24 1.77 24h20.45c.97 0 1.78-.8 1.78-1.78V1.77C24 .8 23.2 0 22.22 0z" />
-          </svg>
-        </a>
-        <a href="https://www.instagram.com/sisekelo_mhlamvu?igsh=dDZ2aW4wdzQ2Yjl5&utm_source=qr" target="_blank" aria-label="Instagram" title="Instagram" class="hover:text-blue-800">
-          <!-- Instagram SVG Icon -->
-          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5a4.25 4.25 0 00-4.25 4.25v8.5a4.25 4.25 0 004.25 4.25h8.5a4.25 4.25 0 004.25-4.25v-8.5a4.25 4.25 0 00-4.25-4.25h-8.5zm8.5 3a1 1 0 110 2 1 1 0 010-2zm-4.25 1.25a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.5a3 3 0 100 6 3 3 0 000-6z" />
-          </svg>
-        </a>
+        <div class="fact-grid">
+          <div class="fact-chip glass"><div class="k">Based in</div><div class="v">Durban, South Africa</div></div>
+          <div class="fact-chip glass"><div class="k">Studying</div><div class="v">BICT Honours, DUT</div></div>
+          <div class="fact-chip glass"><div class="k">Core Languages</div><div class="v">Java · Python · C# · SQL</div></div>
+          <div class="fact-chip glass"><div class="k">Currently</div><div class="v">Dev Intern @ PowerBrand</div></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow-num reveal">02 — Experience</div>
+    <div class="section-head reveal"><h2>Where I've been building</h2></div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-card glass">
+          <div class="timeline-dates">MARCH 2025 — PRESENT</div>
+          <h3>Software Developer Intern</h3>
+          <div class="timeline-org">PowerBrand</div>
+          <ul>
+            <li>Design, code, test and debug applications under senior developer guidance</li>
+            <li>Support database management, writing queries and maintaining data integrity</li>
+            <li>Participate in code review, documentation and version control with Git</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-card glass">
+          <div class="timeline-dates">MARCH 2025 — PRESENT</div>
+          <h3>Information Technology Tutor</h3>
+          <div class="timeline-org">Durban University of Technology</div>
+          <ul>
+            <li>Guide students through databases, SQL and system logic</li>
+            <li>Explain complex technical concepts in clear, practical terms</li>
+            <li>Facilitate problem-solving exercises to build critical thinking skills</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="eyebrow-num reveal">03 — Selected Work</div>
+    <div class="section-head reveal">
+      <h2>Six systems, shipped and in progress</h2>
+      <p>Real platforms for real constraints — booking pipelines, capacity limits, live tracking.</p>
+    </div>
+
+    <div class="case-study glass reveal">
+      <div class="case-study-media">
+        <div class="browser-frame">
+          <div class="browser-dots"><span></span><span></span><span></span></div>
+          <img src="assets/images/freightflow-nexus.jpg" alt="FreightFlow Nexus quote comparison screen">
+        </div>
+      </div>
+      <div class="case-study-body">
+        <div class="case-study-top">
+          <span class="project-status dev">In Development</span>
+          <span class="case-study-label">FEATURED CASE STUDY</span>
+        </div>
+        <h3>FreightFlow Nexus</h3>
+        <p class="case-study-intro">A B2B freight logistics platform for the South African market, covering the full booking lifecycle across four portals — shipper, carrier, driver and admin.</p>
+
+        <div class="case-study-block">
+          <div class="cs-k">Problem</div>
+          <p>South African shippers juggle manual quote requests across carriers by phone, email and spreadsheet — no shared system for booking, live tracking, or proof of delivery, which bottlenecks dispatch and invoicing.</p>
+        </div>
+        <div class="case-study-block">
+          <div class="cs-k">Approach</div>
+          <p>Built a four-portal platform on Flask and PostgreSQL, using Flask-SocketIO for real-time dispatch and GPS tracking, hosted on Azure. Covers instant multi-carrier quote comparison, dispatch assignment, live tracking, QR-based proof-of-delivery scanning, and invoicing triggered on delivery confirmation.</p>
+        </div>
+        <div class="case-study-block">
+          <div class="cs-k">Where it stands</div>
+          <p>Core booking, quoting and tracking flows are built and running in development. Next milestones are carrier onboarding and the auto-invoicing module ahead of a pilot with SA freight operators.</p>
+        </div>
+
+        <div class="project-tags"><span>Python</span><span>Flask</span><span>PostgreSQL</span><span>Flask-SocketIO</span><span>Azure</span></div>
+        <div class="project-links"><a href="#" class="disabled">Live demo coming soon</a></div>
+      </div>
+    </div>
+
+    <div class="section-head reveal" style="margin-top:56px;">
+      <h2 style="font-size:clamp(22px,3vw,30px);">More projects</h2>
+    </div>
+
+    <div class="project-grid">
+
+      <div class="project-card glass reveal">
+        <div class="project-visual has-img" style="background-image:url('assets/images/mzansibuilds.jpg')"><span>BUILD-002</span><span class="project-status live">Live</span></div>
+        <div class="project-body">
+          <h3>MzansiBuilds</h3>
+          <p>A platform for South African developers to build in public — share progress, find collaborators, and celebrate shipped work. GitHub-style file browser and project stage tracking.</p>
+          <div class="project-tags"><span>Flask</span><span>PostgreSQL</span><span>SQLAlchemy</span><span>Render</span></div>
+          <div class="project-links"><a href="https://mzansibuilds-1-kkus.onrender.com/" target="_blank">Live Demo</a><a href="https://github.com/Siseko23" target="_blank">GitHub</a></div>
+        </div>
+      </div>
+
+      <div class="project-card glass reveal">
+        <div class="project-visual has-img" style="background-image:url('assets/images/smartseat.jpg')"><span>BUILD-003</span><span class="project-status live">Live</span></div>
+        <div class="project-body">
+          <h3>SmartSeat</h3>
+          <p>A training session seat allocation system with real-time capacity enforcement, division-based seat maps, and an automated bulk-allocation mode alongside manual entry.</p>
+          <div class="project-tags"><span>Flask</span><span>SQLAlchemy</span><span>Flask-Login</span></div>
+          <div class="project-links"><a href="https://smartseat-5yf1.onrender.com" target="_blank">Live Demo</a><a href="https://github.com/Siseko23" target="_blank">GitHub</a></div>
+        </div>
+      </div>
+
+      <div class="project-card glass reveal">
+        <div class="project-visual has-img" style="background-image:url('assets/images/bookstore.jpg')"><span>BUILD-004</span><span class="project-status live">Live</span></div>
+        <div class="project-body">
+          <h3>BookStore</h3>
+          <p>A campus bookstore platform for DUT students, organised by department. Cart, wishlist, order tracking, and an admin panel for managing stock and reviews.</p>
+          <div class="project-tags"><span>Flask</span><span>SQLAlchemy</span><span>Bootstrap</span></div>
+          <div class="project-links"><a href="https://bookstore-1-6ytc.onrender.com/" target="_blank">Live Demo</a><a href="https://github.com/Siseko23" target="_blank">GitHub</a></div>
+        </div>
+      </div>
+
+      <div class="project-card glass reveal">
+        <div class="project-visual has-img" style="background-image:url('assets/images/ramshelf.jpg')"><span>BUILD-005</span><span class="project-status live">Live</span></div>
+        <div class="project-body">
+          <h3>Ramshelf</h3>
+          <p>A rental property platform connecting South African tenants with verified landlords — browse listings, list a property, and search rentals across the country.</p>
+          <div class="project-tags"><span>Full-Stack</span><span>Vercel</span></div>
+          <div class="project-links"><a href="https://ramshelf.vercel.app" target="_blank">Live Demo</a></div>
+        </div>
+      </div>
+
+      <div class="project-card glass reveal">
+        <div class="project-visual"><span>BUILD-006</span><span class="project-status shipped">Shipped</span></div>
+        <div class="project-body">
+          <h3>TutorConnect</h3>
+          <p>A native Android app connecting students with tutors. Separate dashboards for each role, availability management, and a full booking flow.</p>
+          <div class="project-tags"><span>Java</span><span>Android SDK</span><span>SQLite</span></div>
+          <div class="project-links"><a href="https://github.com/Siseko23" target="_blank">GitHub</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="github-activity">
+  <div class="wrap">
+    <div class="eyebrow-num reveal">04 — GitHub Activity</div>
+    <div class="section-head reveal">
+      <h2>Building in the open</h2>
+      <p>Live stats pulled from GitHub — updates automatically as I push.</p>
+    </div>
+
+    <div class="github-grid reveal">
+      <div class="glass gh-card">
+        <img src="https://github-readme-stats.vercel.app/api?username=Siseko23&show_icons=true&hide_border=true&theme=transparent&title_color=5EEAD4&icon_color=5EEAD4&text_color=F5F2EC&bg_color=00000000" alt="Sisekelo Mhlamvu's GitHub stats" loading="lazy" onerror="this.closest('.gh-card').style.display='none'">
+      </div>
+      <div class="glass gh-card gh-card-wide">
+        <img src="https://ghchart.rshah.org/5EEAD4/Siseko23" alt="Sisekelo Mhlamvu's GitHub contribution graph" loading="lazy" onerror="this.closest('.gh-card').style.display='none'">
+      </div>
+    </div>
+    <a class="gh-cta" href="https://github.com/Siseko23" target="_blank" rel="noopener">View full GitHub profile →</a>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow-num reveal">05 — Capabilities</div>
+    <div class="section-head reveal"><h2>What I build with</h2></div>
+
+    <div class="cap-groups reveal">
+      <div class="cap-row">
+        <span class="cap-label">LANG</span>
+        <span class="cap-tag glass">Java</span><span class="cap-tag glass">Python</span><span class="cap-tag glass">C#</span><span class="cap-tag glass">SQL</span><span class="cap-tag glass">PHP</span>
+      </div>
+      <div class="cap-row">
+        <span class="cap-label">WEB</span>
+        <span class="cap-tag glass">HTML/CSS</span><span class="cap-tag glass">JavaScript</span>
+      </div>
+      <div class="cap-row">
+        <span class="cap-label">STACK</span>
+        <span class="cap-tag glass">Flask</span><span class="cap-tag glass">.NET</span><span class="cap-tag glass">REST APIs</span><span class="cap-tag glass">Laravel</span>
+      </div>
+      <div class="cap-row">
+        <span class="cap-label">DATA</span>
+        <span class="cap-tag glass">MySQL</span><span class="cap-tag glass">SQLite</span>
+      </div>
+      <div class="cap-row">
+        <span class="cap-label">MOBILE</span>
+        <span class="cap-tag glass">Android (Java)</span>
+      </div>
+      <div class="cap-row">
+        <span class="cap-label">TOOLS</span>
+        <span class="cap-tag glass">Git</span><span class="cap-tag glass">Android Studio</span><span class="cap-tag glass">Visual Studio</span><span class="cap-tag glass">PyCharm</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certificates">
+  <div class="wrap">
+    <div class="eyebrow-num reveal">06 — Credentials</div>
+    <div class="section-head reveal"><h2>Certifications</h2></div>
+
+    <div class="cert-grid">
+      <div class="cert-card glass reveal"><h4>Introduction to Cybersecurity</h4><div class="issuer">Cisco</div><a href="files/cert-cisco-cybersecurity.pdf" target="_blank">View Certificate →</a></div>
+      <div class="cert-card glass reveal"><h4>Oracle Cloud Infrastructure 2025 — AI Foundations</h4><div class="issuer">Oracle</div><a href="files/cert-oracle-ai-foundations.pdf" target="_blank">View Certificate →</a></div>
+      <div class="cert-card glass reveal"><h4>AI Fundamentals</h4><div class="issuer">Microsoft</div><a href="files/cert-ms-ai-fundamentals.pdf" target="_blank">View Certificate →</a></div>
+      <div class="cert-card glass reveal"><h4>Generative AI</h4><div class="issuer">Microsoft</div><a href="files/cert-ms-generative-ai.pdf" target="_blank">View Certificate →</a></div>
+      <div class="cert-card glass reveal"><h4>Responsible AI</h4><div class="issuer">Microsoft</div><a href="files/cert-ms-responsible-ai.pdf" target="_blank">View Certificate →</a></div>
+      <div class="cert-card glass reveal"><h4>AI and Accessibility</h4><div class="issuer">Microsoft</div><a href="files/cert-ms-ai-accessibility.pdf" target="_blank">View Certificate →</a></div>
+      <div class="cert-card glass reveal"><h4>Search Technology</h4><div class="issuer">Microsoft</div><a href="files/cert-ms-search-technology.pdf" target="_blank">View Certificate →</a></div>
+      <div class="cert-card glass reveal"><h4>Microsoft Copilot</h4><div class="issuer">Microsoft</div><a href="files/cert-ms-copilot.pdf" target="_blank">View Certificate →</a></div>
+      <div class="cert-card glass reveal"><h4>FNB App Academy 2025</h4><div class="issuer">FNB</div><a href="files/cert-fnb-app-academy.pdf" target="_blank">View Certificate →</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="wrap">
+    <div class="eyebrow-num reveal">07 — Résumé</div>
+    <div class="section-head reveal">
+      <h2>Full CV, right here</h2>
+      <p>Skim it inline, or grab the PDF.</p>
+    </div>
+
+    <div class="resume-card glass reveal">
+      <iframe src="files/Sisekelo_Mhlamvu_CV.pdf" title="Sisekelo Mhlamvu CV" loading="lazy"></iframe>
+      <div class="resume-actions">
+        <a href="files/Sisekelo_Mhlamvu_CV.pdf" download class="btn-solid">Download CV</a>
+        <a href="files/Sisekelo_Mhlamvu_CV.pdf" target="_blank" class="btn-ghost">Open in new tab</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow-num reveal">08 — Contact</div>
+    <div class="section-head reveal"><h2>Let's build something</h2></div>
+
+    <div class="contact-card glass reveal">
+      <form id="contact-form">
+        <div class="field-row"><label for="name">Name</label><input id="name" name="name" type="text" required placeholder="Your full name"></div>
+        <div class="field-row"><label for="email">Email</label><input id="email" name="email" type="email" required placeholder="your.email@example.com"></div>
+        <div class="field-row"><label for="message">Message</label><textarea id="message" name="message" required placeholder="What are you looking to build?"></textarea></div>
+        <button type="submit" class="btn-solid" style="width:100%; justify-content:center; border:none; cursor:pointer;">Send Message</button>
+        <p id="form-status"></p>
+      </form>
+      <div class="contact-direct">
+        <div>Phone: <a href="tel:+27658564192">+27 65 856 4192</a></div>
+        <div>Email: <a href="mailto:svmhlamvu@gmail.com">svmhlamvu@gmail.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p>SISEKELO MHLAMVU · DURBAN, SOUTH AFRICA · 2026</p>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/in/sisekelo-mhlamvu-2576a1315" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+      <a href="https://www.instagram.com/sisekelo_mhlamvu?igsh=dDZ2aW4wdzQ2Yjl5&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+      <a href="https://github.com/Siseko23" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+      <a href="mailto:svmhlamvu@gmail.com" aria-label="Email">Email</a>
+      <a href="tel:+27658564192" aria-label="Phone">+27 65 856 4192</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
 </body>
 </html>
-
